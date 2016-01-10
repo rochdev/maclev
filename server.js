@@ -12,4 +12,4 @@ app.use(compression());
 app.use(serveStatic('www'));
 app.use('/download', download());
 
-http.createServer(app).listen(process.argv[2] || 80);
+http.createServer(app).listen(process.env.PORT || 3000);
