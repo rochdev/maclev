@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.teal-blue.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="octicons/octicons.css">
+    <link rel="stylesheet" href="flex.css">
+    <link rel="stylesheet" href="app.css">
+
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Maclev</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="https://github.com/rochdev/maclev">
+              <span class="mega-octicon octicon-mark-github"></span>
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <h5>Installation</h5>
+            </div>
+          </div>
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Base</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="git">
+                    <input type="checkbox" id="git" class="mdl-checkbox__input" checked disabled>
+                    <span class="mdl-checkbox__label">Git</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="brew">
+                    <input type="checkbox" id="brew" class="mdl-checkbox__input" checked disabled>
+                    <span class="mdl-checkbox__label">Homebrew</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="slack">
+                    <input type="checkbox" id="xcode" class="mdl-checkbox__input" checked disabled>
+                    <span class="mdl-checkbox__label">Xcode Command Line Tools</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Social</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="discord">
+                    <input type="checkbox" id="discord" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Discord</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="gitter">
+                    <input type="checkbox" id="gitter" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Gitter</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="slack">
+                    <input type="checkbox" id="slack" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Slack</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Browsers</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="chrome">
+                    <input type="checkbox" id="chrome" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Chrome</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="firefox">
+                    <input type="checkbox" id="firefox" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Firefox</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="opera">
+                    <input type="checkbox" id="opera" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Opera</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Text editors</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="atom">
+                    <input type="checkbox" id="atom" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Atom</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="sublime">
+                    <input type="checkbox" id="sublime" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Sublime Text</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="vscode">
+                    <input type="checkbox" id="vscode" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Visual Studio Code</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Tools</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="docker">
+                    <input type="checkbox" id="docker" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Docker Toolbox</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="github">
+                    <input type="checkbox" id="github" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">GitHub Desktop</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="vagrant">
+                    <input type="checkbox" id="vagrant" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Vagrant</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="virtualbox">
+                    <input type="checkbox" id="virtualbox" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">VirtualBox</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Languages</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="node">
+                    <input type="checkbox" id="node" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Node.js</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="ruby">
+                    <input type="checkbox" id="ruby" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">Ruby</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <h2 class="mdl-card__title-text">Extras</h2>
+                </div>
+
+                <div class="mdl-card__supporting-text">
+                  <label class="mdl-checkbox mdl-js-checkbox" for="bash-git-prompt">
+                    <input type="checkbox" id="bash-git-prompt" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">bash-git-prompt</span>
+                  </label>
+
+                  <label class="mdl-checkbox mdl-js-checkbox" for="hub">
+                    <input type="checkbox" id="hub" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">hub</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Colored FAB button -->
+          <a id="download" href="javascript:void(0);" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored download">
+            <i class="material-icons">get_app</i>
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <iframe id="download-frame" style="display: none;"></iframe>
+
+    <script src="app.js"></script>
+  </body>
+</html>
