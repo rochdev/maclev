@@ -20,7 +20,7 @@
       var vm = this;
 
       vm.addons = {};
-      vm.formulas = ['bash-git-prompt', 'hub'];
+      vm.formulas = [];
       vm.nodeVersions = [];
       vm.nodeModules = [];
 
