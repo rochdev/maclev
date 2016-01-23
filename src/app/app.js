@@ -48,17 +48,23 @@
           return vm.addons[addon];
         });
 
-        if (addons.length > 0) {
+        if (addons.length) {
           parts.push('addons=' + addons.join(','));
         }
 
-        if (vm.formulas.length > 0) {
+        if (vm.formulas.length) {
           parts.push('formulas=' + vm.formulas.join(','));
         }
 
-        if (vm.addons.node && vm.nodeVersions.length > 0) {
-          parts.push('node-versions=' + vm.nodeVersions.join(','));
-          parts.push('node-default=' + vm.nodeDefault);
+        if (vm.addons.node) {
+          if (vm.nodeVersions.length) {
+            parts.push('node-versions=' + vm.nodeVersions.join(','));
+            parts.push('node-default=' + vm.nodeDefault);
+          }
+
+          if (vm.nodeModules.length) {
+            parts.push('node-modules=' + vm.nodeModules.join(','));
+          }
         }
 
         return parts.join('&');
