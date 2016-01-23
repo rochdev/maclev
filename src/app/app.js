@@ -24,15 +24,12 @@
       vm.nodeVersions = [];
       vm.nodeModules = [];
 
-      Object.defineProperties(vm.addons, {
-        virtualbox: {
-          get: function() {
-            return this.docker;
-          }
-        }
-      });
-
+      vm.loadPreset = loadPreset;
       vm.createLink = createLink;
+
+      $scope.$watch('vm.addons.docker', function(docker) {
+        docker && (vm.addons.virtualbox = true);
+      });
 
       $scope.$watchCollection('vm.nodeVersions', function(nodeVersions) {
         if (nodeVersions.length === 0) {
@@ -41,6 +38,52 @@
           vm.nodeDefault = nodeVersions[0];
         }
       });
+
+      function loadPreset(name) {
+        if (name === 'rochdev') {
+          vm.addons = {
+            discord: true,
+            gitter: true,
+            slack: true,
+            chrome: true,
+            docker: true,
+            github: true,
+            vagrant: true,
+            atom: true,
+            node: true,
+            ruby: true
+          };
+
+          vm.formulas = [
+            'bash-git-prompt',
+            'hub',
+            'mongodb',
+            'postgresql',
+            'gemnasium-toolbelt',
+            'heroku-toolbelt',
+            'cf-cli'
+          ];
+
+          vm.nodeVersions = ['v5', 'v4', 'v0.12', 'v0.10'];
+          vm.nodeDefault = 'v4';
+          vm.nodeModules = [
+            'babel-cli',
+            'bower',
+            'cordova',
+            'cucumber',
+            'forever',
+            'grunt-cli',
+            'gulp',
+            'karma',
+            'mocha',
+            'mversion',
+            'protractor',
+            'selenium-standalone',
+            'tinto',
+            'yo'
+          ];
+        }
+      }
 
       function createLink() {
         var parts = [];

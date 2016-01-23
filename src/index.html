@@ -32,6 +32,10 @@
     </md-toolbar>
 
     <main>
+      <h1 class="md-title">Presets</h1>
+
+      <md-button class="md-raised md-accent" ng-click="vm.loadPreset('rochdev')">rochdev</md-button>
+
       <h1 class="md-title">Install</h1>
 
       <addon-grid>
@@ -126,7 +130,7 @@
           </md-input-container>
         </addon-card>
 
-        <addon-card title="Node Module" ng-if="vm.addons.node">
+        <addon-card title="Node Modules" ng-if="vm.addons.node">
           <list-picker
             source="/search/npm"
             destination="vm.nodeModules"
