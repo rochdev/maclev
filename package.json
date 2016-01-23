@@ -25,6 +25,7 @@
     "del": "^2.2.0",
     "express": "^4.13.4",
     "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.8.0",
     "gulp-concat": "^2.6.0",
     "gulp-inject": "^3.0.0",
     "gulp-order": "^1.1.1",

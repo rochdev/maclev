@@ -125,7 +125,7 @@
             <label>Default version</label>
 
             <md-select style="width: 200px;" ng-model="vm.nodeDefault" placeholder="Default version">
-              <md-option ng-value="version" ng-repeat="version in vm.nodeVersions">{{ version }}</md-option>
+              <md-option ng-value="version" ng-repeat="version in vm.nodeVersions track by version">{{::version}}</md-option>
             </md-select>
           </md-input-container>
         </addon-card>

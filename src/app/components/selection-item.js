@@ -20,14 +20,7 @@
         item: '@',
         onRemove: '&'
       },
-      template: [
-        '<div layout layout-align="center">',
-          '<ng-transclude flex class="selection-name"></ng-transclude>',
-          '<md-button class="md-icon-button remove-selection" ng-click="onRemove()" aria-label="Remove">',
-            '<md-icon md-svg-icon="md-close"></md-icon>',
-          '</md-button>',
-        '</div>'
-      ].join('')
+      templateUrl: 'app/components/selection-item.html'
     };
   }
 })(angular.module('maclev'));

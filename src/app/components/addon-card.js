@@ -19,19 +19,7 @@
       scope: {
         title: '@'
       },
-      template: [
-        '<md-card>',
-          '<md-card-title>',
-            '<md-card-title-text>',
-              '<span class="md-headline">{{ title }}</span>',
-            '</md-card-title-text>',
-          '</md-card-title>',
-
-          '<md-card-content>',
-            '<ng-transclude></ng-transclude>',
-          '</md-card-content>',
-        '</md-card>'
-      ].join('')
+      templateUrl: 'app/components/addon-card.html'
     };
   }
 })(angular.module('maclev'));

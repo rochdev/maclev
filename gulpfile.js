@@ -74,7 +74,14 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('templates', function() {
+  var templateCache = require('gulp-angular-templatecache');
+
   return gulp.src('src/app/**/*.html')
+    .pipe(templateCache({
+      filename: 'app.tpl.js',
+      module: 'maclev',
+      root: 'app'
+    }))
     .pipe(gulp.dest('www/app'));
 });
 
