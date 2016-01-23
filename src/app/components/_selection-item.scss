@@ -1,0 +1,13 @@
+selection-item {
+  .selection-name {
+    line-height: 40px;
+  }
+
+  .remove-selection svg {
+    transition: all 0.4s ease;
+  }
+
+  .remove-selection:hover svg {
+    fill: #F44336;
+  }
+}

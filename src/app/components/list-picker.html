@@ -1,0 +1,19 @@
+<md-autocomplete
+  md-search-text="searchText"
+  md-selected-item-change="add(item)"
+  md-items="item in query(searchText)"
+  md-item-text="item"
+  md-min-length="0"
+  placeholder="{{placeholder}}">
+  <md-item-template>
+    <span md-highlight-text="searchText" md-highlight-flags="^i">{{ item }}</span>
+  </md-item-template>
+
+  <md-not-found>
+    No matches for "{{ searchText }}" were found.
+  </md-not-found>
+</md-autocomplete>
+
+<selection-item ng-repeat="item in destination" on-remove="remove(item)">
+  {{ item }}
+</selection-item>
