@@ -12,7 +12,7 @@
    * @description
    * The `autocomplete` directive.
    */
-  function listPickerDirective($http, $timeout) {
+  function listPickerDirective($http) {
     return {
       restrict: 'E',
       scope: {
@@ -22,7 +22,7 @@
         minLength: '@'
       },
       templateUrl: 'app/components/list-picker.html',
-      link: function postLink(scope, element) {
+      link: function postLink(scope) {
 
         scope.add = add;
         scope.remove = remove;
