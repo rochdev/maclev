@@ -23,7 +23,6 @@
       },
       templateUrl: 'app/components/list-picker.html',
       link: function postLink(scope) {
-
         scope.add = add;
         scope.remove = remove;
         scope.query = query;

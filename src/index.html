@@ -136,6 +136,22 @@
             destination="vm.nodeModules"
             placeholder="Add a node module"></list-picker>
         </addon-card>
+
+        <addon-card title="Ruby Versions" ng-if="vm.addons.ruby">
+          <list-picker
+            source="/search/ruby"
+            destination="vm.rubyVersions"
+            placeholder="Add a ruby version"
+            min-items="1"></list-picker>
+
+          <md-input-container ng-if="vm.rubyVersions.length">
+            <label>Default version</label>
+
+            <md-select style="width: 200px;" ng-model="vm.rubyDefault" placeholder="Default version">
+              <md-option ng-value="version" ng-repeat="version in vm.rubyVersions track by version">{{::version}}</md-option>
+            </md-select>
+          </md-input-container>
+        </addon-card>
       </addon-grid>
     </main>
 

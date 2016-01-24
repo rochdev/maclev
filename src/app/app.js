@@ -23,21 +23,17 @@
       vm.formulas = [];
       vm.nodeVersions = [];
       vm.nodeModules = [];
+      vm.rubyVersions = [];
 
       vm.loadPreset = loadPreset;
       vm.createLink = createLink;
 
       $scope.$watch('vm.addons.docker', function(docker) {
-        docker && (vm.addons.virtualbox = true);
+        vm.addons.virtualbox = docker;
       });
 
-      $scope.$watchCollection('vm.nodeVersions', function(nodeVersions) {
-        if (nodeVersions.length === 0) {
-          vm.nodeDefault = null;
-        } else if (!vm.nodeDefault || nodeVersions.indexOf(vm.nodeDefault) === -1) {
-          vm.nodeDefault = nodeVersions[0];
-        }
-      });
+      watchVersions('node');
+      watchVersions('ruby');
 
       function loadPreset(name) {
         if (name === 'rochdev') {
@@ -110,7 +106,24 @@
           }
         }
 
+        if (vm.addons.ruby) {
+          if (vm.rubyVersions.length) {
+            parts.push('ruby-versions=' + vm.rubyVersions.join(','));
+            parts.push('ruby-default=' + vm.rubyDefault);
+          }
+        }
+
         return parts.join('&');
+      }
+
+      function watchVersions(language) {
+        $scope.$watchCollection('vm.' + language + 'Versions', function(versions) {
+          if (versions.length === 0) {
+            vm[language + 'Default'] = null;
+          } else if (!vm[language + 'Default'] || versions.indexOf(vm[language + 'Default']) === -1) {
+            vm[language + 'Default'] = versions[0];
+          }
+        });
       }
     });
 })();
