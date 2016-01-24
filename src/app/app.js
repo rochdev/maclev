@@ -78,6 +78,9 @@
             'tinto',
             'yo'
           ];
+
+          vm.rubyVersions = ['2.3.0', '1.9.3-p551'];
+          vm.rubyDefault = '2.3.0';
         }
       }
 
