@@ -4,9 +4,11 @@ const PORT = process.env.PORT || 3000;
 
 var compression = require('compression');
 var express = require('express');
+var search = require('./lib/search-middleware');
 var app = express();
 
 app.use(compression());
+app.use(search);
 app.get('/download', require('./lib/routes/download'));
 app.get('/search/brew', require('./lib/routes/search/brew'));
 app.get('/search/node', require('./lib/routes/search/node'));
