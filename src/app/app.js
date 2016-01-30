@@ -21,6 +21,7 @@
 
       vm.addons = {};
       vm.formulas = [];
+      vm.casks = [];
       vm.nodeVersions = [];
       vm.nodeModules = [];
       vm.rubyVersions = [];
@@ -59,6 +60,7 @@
             'heroku-toolbelt',
             'cf-cli'
           ];
+          vm.casks = [];
 
           vm.nodeVersions = ['v5', 'v4', 'v0.12', 'v0.10'];
           vm.nodeDefault = 'v4';
@@ -96,6 +98,10 @@
 
         if (vm.formulas.length) {
           parts.push('formulas=' + vm.formulas.join(','));
+        }
+
+        if (vm.casks.length) {
+          parts.push('casks=' + vm.casks.join(','));
         }
 
         if (vm.addons.node) {
