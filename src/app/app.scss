@@ -20,8 +20,12 @@ main {
   padding: 16px 16px 80px;
 }
 
-md-checkbox.addon {
+.addon {
   display: block;
+  min-height: 20px;
+  margin-left: inherit;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 .download {
