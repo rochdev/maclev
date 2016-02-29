@@ -18,27 +18,21 @@
         .primaryPalette('teal')
         .accentPalette('blue');
     })
-    .controller('AppController', function($scope, $location) {
+    .controller('AppController', function($scope, $location, preset) {
       var vm = this;
 
       vm.loadUrl = loadUrl;
       vm.loadPreset = loadPreset;
       vm.createLink = createLink;
+      vm.hasAddon = hasAddon;
+      vm.toggle = toggle;
 
       vm.loadUrl();
 
-      $scope.$watch('vm.addons.docker', function(docker) {
-        vm.addons.virtualbox = docker;
-      });
-
       $scope.$watch(function() {
-        var addons = Object.keys(vm.addons).filter(function(addon) {
-          return vm.addons[addon];
-        });
-
-        $location.search('addons', addons.join(',') || null);
-        $location.search('brew-formulas', vm.formulas.join(',') || null);
-        $location.search('brew-casks', vm.casks.join(',') || null);
+        $location.search('addons', vm.addons.join(',') || null);
+        $location.search('brew-formulas', vm.brewFormulas.join(',') || null);
+        $location.search('brew-casks', vm.brewCasks.join(',') || null);
         $location.search('node-versions', vm.nodeVersions.join(',') || null);
         $location.search('node-modules', vm.nodeModules.join(',') || null);
         $location.search('node-default', vm.nodeDefault || null);
@@ -53,16 +47,9 @@
       function loadUrl() {
         var search = $location.search();
 
-        vm.addons = {};
-
-        if (search.addons) {
-          search.addons.split(',').forEach(function(addon) {
-            vm.addons[addon] = true;
-          });
-        }
-
-        vm.formulas = search['brew-formulas'] ? search['brew-formulas'].split(',') : [];
-        vm.casks = search['brew-casks'] ? search['brew-casks'].split(',') : [];
+        vm.addons = search['addons'] ? search['addons'].split(',') : [];
+        vm.brewFormulas = search['brew-formulas'] ? search['brew-formulas'].split(',') : [];
+        vm.brewCasks = search['brew-casks'] ? search['brew-casks'].split(',') : [];
         vm.nodeVersions = search['node-versions'] ? search['node-versions'].split(',') : [];
         vm.nodeModules = search['node-modules'] ? search['node-modules'].split(',') : [];
         vm.nodeDefault = search['node-default'] ? search['node-default'] : null;
@@ -72,77 +59,35 @@
       }
 
       function loadPreset(name) {
-        if (name === 'rochdev') {
-          vm.addons = {
-            discord: true,
-            gitter: true,
-            slack: true,
-            chrome: true,
-            docker: true,
-            github: true,
-            vagrant: true,
-            atom: true,
-            node: true,
-            ruby: true
-          };
+        var current = preset.get(name);
 
-          vm.formulas = [
-            'bash-git-prompt',
-            'hub',
-            'mongodb',
-            'postgresql',
-            'gemnasium-toolbelt',
-            'heroku-toolbelt',
-            'cf-cli'
-          ];
-          vm.casks = [];
-
-          vm.nodeVersions = ['v5', 'v4', 'v0.12', 'v0.10'];
-          vm.nodeDefault = 'v4';
-          vm.nodeModules = [
-            'babel-cli',
-            'bower',
-            'cordova',
-            'cucumber',
-            'forever',
-            'grunt-cli',
-            'gulp',
-            'karma',
-            'mocha',
-            'mversion',
-            'protractor',
-            'selenium-standalone',
-            'tinto',
-            'yo'
-          ];
-
-          vm.rubyVersions = ['2.3.0', '1.9.3-p551'];
-          vm.rubyDefault = '2.3.0';
-          vm.rubyGems = [
-            'bundler'
-          ];
-        }
+        vm.addons = current.addons;
+        vm.brewFormulas = current.brewFormulas;
+        vm.brewCasks = current.brewCasks;
+        vm.nodeVersions = current.nodeVersions;
+        vm.nodeDefault = current.nodeDefault;
+        vm.nodeModules = current.nodeModules;
+        vm.rubyVersions = current.rubyVersions;
+        vm.rubyDefault = current.rubyDefault;
+        vm.rubyGems = current.rubyGems;
       }
 
       function createLink() {
         var parts = [];
-        var addons = Object.keys(vm.addons).filter(function(addon) {
-          return vm.addons[addon];
-        });
 
-        if (addons.length) {
-          parts.push('addons=' + addons.join(','));
+        if (vm.addons.length) {
+          parts.push('addons=' + vm.addons.join(','));
         }
 
-        if (vm.formulas.length) {
-          parts.push('brew-formulas=' + vm.formulas.join(','));
+        if (vm.brewFormulas.length) {
+          parts.push('brew-formulas=' + vm.brewFormulas.join(','));
         }
 
-        if (vm.casks.length) {
-          parts.push('brew-casks=' + vm.casks.join(','));
+        if (vm.brewCasks.length) {
+          parts.push('brew-casks=' + vm.brewCasks.join(','));
         }
 
-        if (vm.addons.node) {
+        if (vm.hasAddon('node')) {
           if (vm.nodeVersions.length) {
             parts.push('node-versions=' + vm.nodeVersions.join(','));
             parts.push('node-default=' + vm.nodeDefault);
@@ -153,7 +98,7 @@
           }
         }
 
-        if (vm.addons.ruby) {
+        if (vm.hasAddon('ruby')) {
           if (vm.rubyVersions.length) {
             parts.push('ruby-versions=' + vm.rubyVersions.join(','));
             parts.push('ruby-default=' + vm.rubyDefault);
@@ -165,6 +110,20 @@
         }
 
         return parts.join('&');
+      }
+
+      function hasAddon(name) {
+        return vm.addons.indexOf(name) !== -1;
+      }
+
+      function toggle(collection, item) {
+        var index = collection.indexOf(item);
+
+        if (index !== -1) {
+          collection.splice(index, 1);
+        } else {
+          collection.push(item);
+        }
       }
 
       function watchVersions(language) {

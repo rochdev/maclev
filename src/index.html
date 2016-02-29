@@ -35,6 +35,7 @@
     <main>
       <h1 class="md-title">Presets</h1>
 
+      <md-button class="md-raised md-warn" ng-click="vm.loadPreset('clear')">clear</md-button>
       <md-button class="md-raised md-accent" ng-click="vm.loadPreset('rochdev')">rochdev</md-button>
 
       <h1 class="md-title">Install</h1>
@@ -55,55 +56,55 @@
         </addon-card>
 
         <addon-card title="Social">
-          <md-checkbox class="addon" ng-model="vm.addons.discord">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('discord')" ng-click="vm.toggle(vm.addons, 'discord')">
             Discord
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.gitter">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('gitter')" ng-click="vm.toggle(vm.addons, 'gitter')">
             Gitter
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.slack">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('slack')" ng-click="vm.toggle(vm.addons, 'slack')">
             Slack
           </md-checkbox>
         </addon-card>
 
         <addon-card title="Browsers">
-          <md-checkbox class="addon" ng-model="vm.addons.chrome">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('chrome')" ng-click="vm.toggle(vm.addons, 'chrome')">
             Chrome
           </md-checkbox>
         </addon-card>
 
         <addon-card title="Text Editors">
-          <md-checkbox class="addon" ng-model="vm.addons.atom">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('atom')" ng-click="vm.toggle(vm.addons, 'atom')">
             Atom
           </md-checkbox>
         </addon-card>
 
         <addon-card title="Tools">
-          <md-checkbox class="addon" ng-model="vm.addons.docker">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('docker')" ng-click="vm.toggle(vm.addons, 'docker')">
             Docker Toolbox
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.github">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('github')" ng-click="vm.toggle(vm.addons, 'github')">
             GitHub Desktop
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.vagrant">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('vagrant')" ng-click="vm.toggle(vm.addons, 'vagrant')">
             Vagrant
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.virtualbox" disabled>
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('virtualbox') || vm.hasAddon('docker')" disabled>
             VirtualBox
           </md-checkbox>
         </addon-card>
 
         <addon-card title="Languages">
-          <md-checkbox class="addon" ng-model="vm.addons.node">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('node')" ng-click="vm.toggle(vm.addons, 'node')">
             Node.js
           </md-checkbox>
 
-          <md-checkbox class="addon" ng-model="vm.addons.ruby">
+          <md-checkbox class="addon" ng-checked="vm.hasAddon('ruby')" ng-click="vm.toggle(vm.addons, 'ruby')">
             Ruby
           </md-checkbox>
         </addon-card>
@@ -111,7 +112,7 @@
         <addon-card title="Brew Formulas">
           <list-picker
             source="/search/brew"
-            destination="vm.formulas"
+            destination="vm.brewFormulas"
             placeholder="Add a homebrew formula"
             min-length="2"></list-picker>
         </addon-card>
@@ -119,12 +120,12 @@
         <addon-card title="Brew Casks">
           <list-picker
             source="/search/cask"
-            destination="vm.casks"
+            destination="vm.brewCasks"
             placeholder="Add a homebrew cask"
             min-length="2"></list-picker>
         </addon-card>
 
-        <addon-card title="Node Versions" ng-if="vm.addons.node">
+        <addon-card title="Node Versions" ng-if="vm.hasAddon('node')">
           <list-picker
             source="/search/node"
             destination="vm.nodeVersions"
@@ -139,14 +140,14 @@
           </md-input-container>
         </addon-card>
 
-        <addon-card title="Node Modules" ng-if="vm.addons.node">
+        <addon-card title="Node Modules" ng-if="vm.hasAddon('node')">
           <list-picker
             source="/search/npm"
             destination="vm.nodeModules"
             placeholder="Add a node module"></list-picker>
         </addon-card>
 
-        <addon-card title="Ruby Versions" ng-if="vm.addons.ruby">
+        <addon-card title="Ruby Versions" ng-if="vm.hasAddon('ruby')">
           <list-picker
             source="/search/ruby"
             destination="vm.rubyVersions"
@@ -162,7 +163,7 @@
           </md-input-container>
         </addon-card>
 
-        <addon-card title="Ruby Gems" ng-if="vm.addons.ruby">
+        <addon-card title="Ruby Gems" ng-if="vm.hasAddon('ruby')">
           <list-picker
             source="/search/gems"
             destination="vm.rubyGems"
