@@ -160,6 +160,14 @@
             </md-select>
           </md-input-container>
         </addon-card>
+
+        <addon-card title="Ruby Gems" ng-if="vm.addons.ruby">
+          <list-picker
+            source="/search/gems"
+            destination="vm.rubyGems"
+            placeholder="Add a ruby gem"
+            min-items="1"></list-picker>
+        </addon-card>
       </addon-grid>
     </main>
 

@@ -25,6 +25,7 @@
       vm.nodeVersions = [];
       vm.nodeModules = [];
       vm.rubyVersions = [];
+      vm.rubyGems = [];
 
       vm.loadPreset = loadPreset;
       vm.createLink = createLink;
@@ -83,6 +84,9 @@
 
           vm.rubyVersions = ['2.3.0', '1.9.3-p551'];
           vm.rubyDefault = '2.3.0';
+          vm.rubyGems = [
+            'bundler'
+          ];
         }
       }
 
@@ -119,6 +123,10 @@
           if (vm.rubyVersions.length) {
             parts.push('ruby-versions=' + vm.rubyVersions.join(','));
             parts.push('ruby-default=' + vm.rubyDefault);
+          }
+
+          if (vm.rubyGems.length) {
+            parts.push('ruby-gems=' + vm.rubyGems.join(','));
           }
         }
 
