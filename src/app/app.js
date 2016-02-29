@@ -11,31 +11,65 @@
    */
   angular
     .module('maclev', ['ngMaterial'])
-    .config(function($mdThemingProvider) {
+    .config(function($locationProvider, $mdThemingProvider) {
+      $locationProvider.html5Mode(true);
+
       $mdThemingProvider.theme('default')
         .primaryPalette('teal')
         .accentPalette('blue');
     })
-    .controller('AppController', function($scope) {
+    .controller('AppController', function($scope, $location) {
       var vm = this;
 
-      vm.addons = {};
-      vm.formulas = [];
-      vm.casks = [];
-      vm.nodeVersions = [];
-      vm.nodeModules = [];
-      vm.rubyVersions = [];
-      vm.rubyGems = [];
-
+      vm.loadUrl = loadUrl;
       vm.loadPreset = loadPreset;
       vm.createLink = createLink;
+
+      vm.loadUrl();
 
       $scope.$watch('vm.addons.docker', function(docker) {
         vm.addons.virtualbox = docker;
       });
 
+      $scope.$watch(function() {
+        var addons = Object.keys(vm.addons).filter(function(addon) {
+          return vm.addons[addon];
+        });
+
+        $location.search('addons', addons.join(',') || null);
+        $location.search('brew-formulas', vm.formulas.join(',') || null);
+        $location.search('brew-casks', vm.casks.join(',') || null);
+        $location.search('node-versions', vm.nodeVersions.join(',') || null);
+        $location.search('node-modules', vm.nodeModules.join(',') || null);
+        $location.search('node-default', vm.nodeDefault || null);
+        $location.search('ruby-versions', vm.rubyVersions.join(',') || null);
+        $location.search('ruby-default', vm.rubyDefault || null);
+        $location.search('ruby-gems', vm.rubyGems.join(',') || null);
+      });
+
       watchVersions('node');
       watchVersions('ruby');
+
+      function loadUrl() {
+        var search = $location.search();
+
+        vm.addons = {};
+
+        if (search.addons) {
+          search.addons.split(',').forEach(function(addon) {
+            vm.addons[addon] = true;
+          });
+        }
+
+        vm.formulas = search['brew-formulas'] ? search['brew-formulas'].split(',') : [];
+        vm.casks = search['brew-casks'] ? search['brew-casks'].split(',') : [];
+        vm.nodeVersions = search['node-versions'] ? search['node-versions'].split(',') : [];
+        vm.nodeModules = search['node-modules'] ? search['node-modules'].split(',') : [];
+        vm.nodeDefault = search['node-default'] ? search['node-default'] : null;
+        vm.rubyVersions = search['ruby-versions'] ? search['ruby-versions'].split(',') : [];
+        vm.rubyGems = search['ruby-gems'] ? search['ruby-gems'].split(',') : [];
+        vm.rubyDefault = search['ruby-default'] ? search['ruby-default'] : null;
+      }
 
       function loadPreset(name) {
         if (name === 'rochdev') {
@@ -101,11 +135,11 @@
         }
 
         if (vm.formulas.length) {
-          parts.push('formulas=' + vm.formulas.join(','));
+          parts.push('brew-formulas=' + vm.formulas.join(','));
         }
 
         if (vm.casks.length) {
-          parts.push('casks=' + vm.casks.join(','));
+          parts.push('brew-casks=' + vm.casks.join(','));
         }
 
         if (vm.addons.node) {

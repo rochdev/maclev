@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <base href="/">
 
     <title>Maclev</title>
 
@@ -173,7 +174,8 @@
 
     <md-button class="md-fab md-accent download"
                aria-label="Download"
-               ng-href="/download?{{vm.createLink()}}">
+               ng-href="/download?{{vm.createLink()}}"
+               target="_self">
       <md-tooltip md-direction="top">
         Download
       </md-tooltip>
