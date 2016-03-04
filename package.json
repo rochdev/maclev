@@ -4,8 +4,7 @@
   "description": "Setup your Mac development environment at 300 mph",
   "main": "server.js",
   "scripts": {
-    "postinstall": "gulp build",
-    "start": "node ."
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",

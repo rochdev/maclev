@@ -5,7 +5,6 @@ services:
     command: ./node_modules/.bin/gulp
     volumes:
       - ./lib:/usr/src/app/lib
-      - ./www:/usr/src/app/www
       - ./migrations:/usr/src/app/migrations
   postgres:
     ports:
