@@ -1,3 +1,4 @@
 {
-  "watch": ["server.js", "lib"]
+  "watch": ["server.js", "lib"],
+  "legacyWatch": true
 }

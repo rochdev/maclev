@@ -4,7 +4,8 @@
   "description": "Setup your Mac development environment at 300 mph",
   "main": "server.js",
   "scripts": {
-    "postinstall": "gulp build"
+    "postinstall": "gulp build",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,11 @@
     "node": ">=4 <5"
   },
   "dependencies": {
+    "JSONStream": "^1.1.1",
     "async": "^1.5.2",
     "compression": "^1.6.0",
     "del": "^2.2.0",
+    "event-stream": "^3.3.2",
     "express": "^4.13.4",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.8.0",
@@ -35,8 +38,10 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
+    "knex": "^0.10.0",
     "lodash": "^4.1.0",
     "mongodb": "^2.1.4",
+    "pg": "^4.5.1",
     "q": "^1.4.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",

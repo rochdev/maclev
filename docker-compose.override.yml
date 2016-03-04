@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: ./node_modules/.bin/gulp
+    volumes:
+      - ./lib:/usr/src/app/lib
+      - ./www:/usr/src/app/www
+      - ./migrations:/usr/src/app/migrations
+  postgres:
+    ports:
+      - 5432:5432

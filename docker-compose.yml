@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    image: rochdev/maclev-web:latest
+    links:
+      - postgres
+    ports:
+      - 80:80
+  postgres:
+    image: postgres:9
