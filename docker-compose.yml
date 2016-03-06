@@ -6,5 +6,11 @@ services:
       - postgres
     ports:
       - 80:80
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
   postgres:
     image: postgres:9
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD

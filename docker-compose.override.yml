@@ -6,6 +6,10 @@ services:
     volumes:
       - ./lib:/usr/src/app/lib
       - ./migrations:/usr/src/app/migrations
+    env_file:
+      - ./postgres.env
   postgres:
     ports:
       - 5432:5432
+    env_file:
+      - ./postgres.env
