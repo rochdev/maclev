@@ -1,18 +1,18 @@
 version: '2'
 services:
   web:
-    build: ../maclev-web
+    build: ./maclev-web
     command: ./node_modules/.bin/gulp
     ports:
       - 80:80
     volumes:
-      - ../maclev-web/src:/usr/src/app/src
+      - ./maclev-web/src:/usr/src/app/src
   api:
-    build: ../maclev-api
+    build: ./maclev-api
     command: nodemon -L .
     volumes:
-      - ../maclev-api/lib:/usr/src/app/lib
-      - ../maclev-api/migrations:/usr/src/app/migrations
+      - ./maclev-api/lib:/usr/src/app/lib
+      - ./maclev-api/migrations:/usr/src/app/migrations
     env_file:
       - ./postgres.env
   postgres:
