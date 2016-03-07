@@ -1,11 +1,9 @@
 version: '2'
 services:
-  web:
-    image: rochdev/maclev-web:latest
+  api:
+    image: rochdev/maclev-api:latest
     links:
       - postgres
-    ports:
-      - 80:80
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD

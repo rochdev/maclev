@@ -1,0 +1,6 @@
+[submodule "maclev-web"]
+	path = maclev-web
+	url = https://github.com/rochdev/maclev-web.git
+[submodule "maclev-api"]
+	path = maclev-api
+	url = https://github.com/rochdev/maclev-api.git
