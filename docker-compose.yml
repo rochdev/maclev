@@ -11,12 +11,18 @@ services:
     links:
       - postgres
     restart: always
+  scheduler:
+    image: rochdev/maclev-scheduler:latest
+    links:
+      - queue
   postgres:
     image: postgres:9
   queue:
     image: redis:3-alpine
   queue-ui:
     image: rochdev/maclev-queue-ui
+    links:
+      - queue
   advisor:
     image: google/cadvisor:latest
     volumes:

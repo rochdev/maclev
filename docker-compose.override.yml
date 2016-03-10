@@ -19,6 +19,9 @@ services:
       - ./maclev-api/migrations:/usr/src/app/migrations
     env_file:
       - ./postgres.env
+  scheduler:
+    build: ./maclev-scheduler
+    command: nodemon -L .
   postgres:
     ports:
       - 5432:5432
