@@ -1,14 +1,26 @@
 version: '2'
 services:
+  proxy:
+    image: rochdev/maclev-proxy:latest
+    links:
+      - api
+      - advisor
+      - queue-ui
   api:
     image: rochdev/maclev-api:latest
     links:
       - postgres
-    environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
+    restart: always
   postgres:
     image: postgres:9
-    environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
+  queue:
+    image: redis:3-alpine
+  queue-ui:
+    image: rochdev/maclev-queue-ui
+  advisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro

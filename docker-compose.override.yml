@@ -3,10 +3,14 @@ services:
   web:
     build: ./maclev-web
     command: ./node_modules/.bin/gulp
-    ports:
-      - 80:80
     volumes:
       - ./maclev-web/src:/usr/src/app/src
+    ports:
+      - 80:80
+    links:
+      - proxy
+  proxy:
+    build: ./maclev-proxy
   api:
     build: ./maclev-api
     command: nodemon -L .
@@ -20,3 +24,7 @@ services:
       - 5432:5432
     env_file:
       - ./postgres.env
+  queue-ui:
+    build: ./maclev-queue-ui
+    environment:
+      - REDIS_URL=redis://queue:6379

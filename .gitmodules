@@ -7,3 +7,6 @@
 [submodule "maclev-proxy"]
 	path = maclev-proxy
 	url = https://github.com/rochdev/maclev-proxy.git
+[submodule "maclev-queue-ui"]
+	path = maclev-queue-ui
+	url = https://github.com/rochdev/maclev-queue-ui
