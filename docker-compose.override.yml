@@ -22,6 +22,8 @@ services:
   scheduler:
     build: ./maclev-scheduler
     command: nodemon -L .
+    volumes:
+      - ./maclev-scheduler/index.js:/usr/src/app/index.js
   postgres:
     ports:
       - 5432:5432
