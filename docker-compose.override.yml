@@ -16,6 +16,7 @@ services:
     command: nodemon -L .
     volumes:
       - ./maclev-api/lib:/usr/src/app/lib
+      - ./maclev-api/test:/usr/src/app/test
       - ./maclev-api/migrations:/usr/src/app/migrations
     env_file:
       - ./postgres.env
