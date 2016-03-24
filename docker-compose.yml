@@ -6,6 +6,7 @@ services:
       - api
       - advisor
       - queue-ui
+    restart: always
   api:
     image: rochdev/maclev-api:latest
     links:
@@ -15,14 +16,18 @@ services:
     image: rochdev/maclev-scheduler:latest
     links:
       - queue
+    restart: always
   postgres:
     image: postgres:9
+    restart: always
   queue:
     image: redis:3-alpine
+    restart: always
   queue-ui:
     image: rochdev/maclev-queue-ui
     links:
       - queue
+    restart: always
   advisor:
     image: google/cadvisor:latest
     volumes:
@@ -30,3 +35,4 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    restart: always

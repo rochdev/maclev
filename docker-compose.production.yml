@@ -1,0 +1,11 @@
+version: '2'
+services:
+  proxy:
+    ports:
+      - 80:80
+  postgres:
+    ports:
+      - 5432:5432
+  queue-ui:
+    environment:
+      - REDIS_URL=redis://queue:6379
