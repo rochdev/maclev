@@ -6,11 +6,13 @@ services:
     volumes:
       - ./maclev-web/src:/usr/src/app/src
     ports:
-      - 80:80
+      - 8080:80
     links:
       - proxy
   proxy:
     build: ./maclev-proxy
+    ports:
+      - 80:80
   api:
     build: ./maclev-api
     command: nodemon -L .

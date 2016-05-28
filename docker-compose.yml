@@ -4,7 +4,6 @@ services:
     image: rochdev/maclev-proxy:latest
     links:
       - api
-      - advisor
       - queue-ui
     restart: always
   api:
@@ -27,12 +26,4 @@ services:
     image: rochdev/maclev-queue-ui
     links:
       - queue
-    restart: always
-  advisor:
-    image: google/cadvisor:latest
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
     restart: always
