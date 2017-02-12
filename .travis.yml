@@ -6,5 +6,6 @@ before_deploy:
 deploy:
   provider: script
   script: yarn --prod && sls deploy -s prod
+  skip_cleanup: true
   on:
     branch: master
