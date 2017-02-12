@@ -1,0 +1,10 @@
+language: node_js
+
+before_deploy:
+- npm i -g serverless
+
+deploy:
+  provider: script
+  script: yarn --prod && sls deploy -s prod
+  on:
+    branch: master
