@@ -1,0 +1,170 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: maclev
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: us-east-1
+  cfLogs: true
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "S3BucketCache" } ] ] }
+    - Effect: "Allow"
+      Action:
+        - "s3:GetObject"
+        - "s3:DeleteObject"
+        - "s3:PutObject"
+      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "S3BucketCache" }, "/*" ] ] }
+
+package:
+  exclude:
+    - '**'
+    - '!lib/**'
+    - '!node_modules/**'
+
+custom:
+  schedule:
+    rate: ${self:custom.${opt:stage, self:provider.stage}.rate, self:custom.rate}
+    input:
+      stage: ${opt:stage, self:provider.stage}
+  rate: cron(0 0 31 2 ? *)
+  prod:
+    rate: cron(0 9 * * ? *)
+
+functions:
+  # Fetch
+
+  fetch-brew:
+    handler: lib/functions/fetch/brew.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-cask:
+    handler: lib/functions/fetch/cask.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-node:
+    handler: lib/functions/fetch/node.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-npm:
+    handler: lib/functions/fetch/npm.handler
+    timeout: 300
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-python:
+    handler: lib/functions/fetch/python.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-pypi:
+    handler: lib/functions/fetch/pypi.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  fetch-ruby:
+    handler: lib/functions/fetch/ruby.handler
+    events:
+      - schedule: ${self:custom.schedule}
+
+  # Search
+
+  search-brew:
+    handler: lib/functions/search/brew.handler
+    events:
+      - http:
+          path: search/brew
+          method: get
+          cors: true
+
+  search-cask:
+    handler: lib/functions/search/cask.handler
+    events:
+      - http:
+          path: search/cask
+          method: get
+          cors: true
+
+  search-node:
+    handler: lib/functions/search/node.handler
+    events:
+      - http:
+          path: search/node
+          method: get
+          cors: true
+
+  search-npm:
+    handler: lib/functions/search/npm.handler
+    events:
+      - http:
+          path: search/npm
+          method: get
+          cors: true
+
+  search-python:
+    handler: lib/functions/search/python.handler
+    events:
+      - http:
+          path: search/python
+          method: get
+          cors: true
+
+  search-pypi:
+    handler: lib/functions/search/pypi.handler
+    events:
+      - http:
+          path: search/pypi
+          method: get
+          cors: true
+
+  search-ruby:
+    handler: lib/functions/search/ruby.handler
+    events:
+      - http:
+          path: search/ruby
+          method: get
+          cors: true
+
+  search-gem:
+    handler: lib/functions/search/gem.handler
+    events:
+      - http:
+          path: search/gem
+          method: get
+          cors: true
+
+  # Download
+
+  download:
+    handler: lib/functions/download.handler
+    events:
+      - http:
+          path: download
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    S3BucketCache:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: maclev-cache-${opt:stage, self:provider.stage}

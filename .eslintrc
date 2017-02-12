@@ -1,0 +1,21 @@
+{
+  "extends" : [
+    "eslint:recommended",
+    "standard"
+  ],
+  "env"     : {
+    "node" : true,
+    "mocha": true
+  },
+  "globals" : {
+    "expect" : false,
+    "sinon"  : false
+  },
+  "rules": {
+    "max-len": [2, 120, 2],
+    "no-var": 2,
+    "prefer-const": 2,
+    "object-curly-spacing": [2, "always"],
+    "generator-star-spacing": 0
+  }
+}
